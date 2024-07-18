@@ -60,6 +60,63 @@ INSERT INTO  employee VALUES
  show tables;
  desc hospital;
  Insert into hospital Values (patient_id );
+ show tables;
+ 
+ 
+ -- 18-07-2024
+ 
+ desc hospital;
+ SHOW TABLES;
+ drop table department;
+ CREATE TABLE department(
+ department_id INT UNIQUE NOT NULL,
+ department_name varchar(50) NOT NULL
+ );
+ 
+ INSERT INTO department VALUES(101,"Nisha");
+ select * from department;
+INSERT INTO department VALUES(null,"Ankita");
+
+desc department;
+
+ 
+ 
+DROP TABLE employee;
+CREATE TABLE employee(
+employee_id char(2) primary key,
+employee_name varchar(60) NoT NULL,
+employee_email VARCHAR(90) UNIQUE NOT NULL
+);
+DESC employee;
+-- TO add Not null constraint
+-- ALTER TABLE <TABLE-NAME> MODIFY <col-name> <data-type> NOT NULL;
+-- To remove not null constraint
+-- ALTER TABLE <table-name> MODIFY <col-name> <data-type>;
+ALTER TABLE employee MODIFY employee_name varchar(60);
+show tables;
+DESC employee;
+ALTER TABLE employee MODIFY employee_name varchar(60) not null;
+ALTER TABLE employee DROP INDEX employee_email;
+Desc employee;
+ALTER TABLE employee ADD UNIQUE(employee_email);
+
+ALTER TABLE employee DROP primary key;
+DESC employee;
+ALTER TABLE employee ADD primary key (employee_id);
+ALTER TABLE employee add COLUMN employee_salary int;
+desc employee;
+ALTER table employee alter employee_salary set DEFAULT 0;
+INSERT into employee(employee_id,employee_name,employee_email,employee_salary)values("e2","nitya","n@gmail.com",50000);
+
+
+
+
+
+
+
+
+
+
  
  
  
