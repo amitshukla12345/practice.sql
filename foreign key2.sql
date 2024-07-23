@@ -182,10 +182,62 @@ references courses(courses_id)
 DESC teacher; 
 Alter table product DROP FOREIGN KEY category_product;
 select * from category;
-insert into product values (120,"Tshirt",520,100);
+insert into product values (130,"Tshirt",520,100);
 select * from product;
 insert into category values(100,"clothes");
-select * from category;
+select * from category; 
+
+-- 23-07-2024
+ALTER TABLE PRODUCT drop foreign key category_product;
+ALTER TABLE product ADD CONSTRAINT product_category
+foreign key (category_id) references category(category_id);
+
+select(100>45);
+select(100<56);
+select(100<100);
+select(100<=100);
+
+-- and all statement should be true
+select (200<100 and 100<=100 and 10!=100);
+-- or 
+select (2500<500 or 500=500);
+select (25<500 or 500=500);
+show tables;
+drop table department;
+select not(25>500 or 500!=500 or 100!=700);
+create database Amit_school;
+use Amit_school;
+create table department(
+department_id int primary key,
+department_name varchar(100) not null
+);
+create table employee(
+em_id int primary key,
+em_name varchar(50) not null,
+city varchar(50) not null,
+salary bigint,
+Department int,
+constraint department_employee foreign key(department)
+references department(department_id)
+);
+
+INSERT INTO department VALUES (1,"MARKETING"),
+(2,"IT"),
+(3,"human resources");
+select * from  department;
+
+INSERT INTO employee VALUES (1,"nikita","mumbai",67000,"1"),
+(2,"prajakta","pune",80000,1),
+(3,"manisha","banglore",20000,2),
+(4,"nilesh","mumbai",35400,2),
+(5,"monal","pune",34452,2);
+
+select * from employee;
+
+desc employee;
+-- select col-name1,.... from table_name;
+select em_name,salary from employee;
+
 
 
 
