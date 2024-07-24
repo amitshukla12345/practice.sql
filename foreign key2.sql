@@ -226,7 +226,7 @@ INSERT INTO department VALUES (1,"MARKETING"),
 (3,"human resources");
 select * from  department;
 
-INSERT INTO employee VALUES (1,"nikita","mumbai",67000,"1"),
+INSERT INTO employee VALUES (1,"nikita","mumbai",67000,1),
 (2,"prajakta","pune",80000,1),
 (3,"manisha","banglore",20000,2),
 (4,"nilesh","mumbai",35400,2),
@@ -237,6 +237,63 @@ select * from employee;
 desc employee;
 -- select col-name1,.... from table_name;
 select em_name,salary from employee;
+use xyz_company;
+
+
+
+-- 24-07-2023
+
+
+select (10>7) As answer;
+select * from employee WHERE Em_id=1;
+select department FROM employee where em_=1;
+select * from employee where city="mumbai";
+select * from employee WHERE salary<80000 ;
+select * from employee where city="mumbai" AND salary<50000;
+select * from employee where city="mumbai" or city="banglore";
+-- 11 12 13 14 ....20 values>=11 and values<20
+select * from employee where salary>11000 and salary<=20000 ;
+-- department 1 and salary should be less than 20000
+select * from employee where department=1 and salary<=20000;
+select * from employee where department=1 and city="pune";
+-- short cut or operator
+select * from employee WHERE em_id=1 or em_id=2 or em_id=3;
+select * from employee where em_id in(1,2,3);
+select * from employee where city in ("mumbai","pune");
+
+select * from employee where salary between 20000 and 50000;
+alter table employee add column age int;
+
+update employee SET age=0;
+update employee set age=25 where em_id=1;
+update employee set age=26 where em_id=2;
+update employee set age=27 where em_id=3;
+UPDATE employee SET age=28 WHERE em_id=4;
+UPDATE employee SET age=29 WHERE em_id=5;
+UPDATE employee SET age=25 WHERE em_id=6;
+update employee set city="pune" where em_name="nikta";
+update employee set salary=salary+5000 where em_id=5;
+update employee set age=age+2;
+update employee set salary=salary-2000 where em_id=1;
+update employee set age= null where em_id in(1,3);
+desc employee;
+select * from employee;
+update employee set age=null WHERE em_id(1,3);
+select * from employee where age is  null;
+
+select * from employee where age is not null;
+select * from employee where em_name!="nikita";
+
+
+
+
+
+
+
+
+
+
+
 
 
 
