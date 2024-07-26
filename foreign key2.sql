@@ -226,11 +226,11 @@ INSERT INTO department VALUES (1,"MARKETING"),
 (3,"human resources");
 select * from  department;
 
-INSERT INTO employee VALUES (1,"nikita","mumbai",67000,1),
-(2,"prajakta","pune",80000,1),
-(3,"manisha","banglore",20000,2),
-(4,"nilesh","mumbai",35400,2),
-(5,"monal","pune",34452,2);
+INSERT INTO employee VALUES (1,"nikita","mumbai",67000,1,22),
+(2,"prajakta","pune",80000,1,23),
+(3,"manisha","banglore",20000,2,25),
+(4,"nilesh","mumbai",35400,2,26),
+(5,"monal","pune",34452,2,27);
 
 select * from employee;
 
@@ -283,6 +283,120 @@ select * from employee where age is  null;
 
 select * from employee where age is not null;
 select * from employee where em_name!="nikita";
+
+
+-- 25-05-2024
+
+
+select * from employee;
+select * from employee where em_name like "n%a";
+select * from employee where em_name like "m_n%";
+select * from employee where em_name not like "m_n%";
+select * from employee where em_name like "%n%";
+select * from employee where em_name not like "m%";
+select * from employee where em_name  like "%ta";
+select * from employee where em_name like "m%" and city="pune";
+select * from employee Where em_name Like "%t_";
+
+-- DELETE FROM <table_name> WHERE  CONDITION;
+DELETE FROM employee where em_id=4;
+DELETE From employee where department ="1" and age<29;
+Delete from employee where  em_name like"%l";
+delete from employee;
+
+-- TRUNCATE TABLE table-name
+TRUNCATE TABLE employee;
+
+-- AGGREGATE FUNCTIONS
+-- SUM
+-- COUNT
+-- MIN
+-- MAX
+-- AVG     12+12+10/3 
+
+select count(*) AS number_of_employee from employee;
+select count(*) As number_of_department from department;
+select city FROM employee;
+select distinct city from employee;
+INSERT INTO employee VALUES (6,"nikita",null,62300,1,22);
+alter table employee modify city varchar(50);
+desc employee;
+select count(distinct city) from employee;
+select min(salary) from employee;
+select min(age) from employee;
+select max(salary) from employee;
+select sum(salary)*12 from employee;
+select AVG(SALARY) FROM EMPLOYEE;
+SELECT avg(age) from employee;
+select * from employee;
+select * from employee order by salary ASC;
+select * from employee order by salary DESC;
+select * from employee order by age;
+select * from employee order by age DESC;
+update employee set salary=80000 where em_id=1;
+select * from employee order by salary Desc,age desc;
+
+-- 26 07 2024
+-- agregate function
+select * from employee order by salary Limit 1;
+select * from employee order by salary desc;
+select * from employee order by salary Desc,age desc Limit 3;
+select * from employee order by age;
+select * from employee order by age desc;
+
+select count(em_id) from employee group by department;
+select department,count(em_id) from employee group by department;
+select city,count(em_id) from employee Group By city;
+select city,sum(salary) from employee group by city;
+select sum(salary) from employee group by city;
+select city,sum(salary),avg(salary),min(salary),max(salary) from employee Group by city; 
+
+select department,sum(salary) from employee group by department;
+alter table employee add column gender varchar(30);
+select * from employee;
+update employee set gender="M" where em_id=4;
+update employee set gender="f" where em_id=1;
+update employee set gender="f" where em_id=2;
+update employee set gender="f" where em_id=3;
+update employee set gender="f" where em_id=5;
+update employee set gender="f" where em_id=6;
+
+-- select count(*) from employee where salary<50000 group by gender and gender="f";
+select gender,count(em_id) from employee where salary<50000 group by gender HAVING gender="f";
+
+
+select department,avg(salary) as 
+average_salary from employee 
+group by department having avg(salary)<50000;
+select department,avg(salary) as average_salary
+ from employee 
+ group by department order by average_salary LIMIT 1;
+select department,avg(salary) as average_salary 
+from employee 
+group by department  ORDER BY AVERAGE_SALARY DESC LIMIT 1;
+select department,avg(salary) as average_salary 
+from employee group by department  ORDER BY AVERAGE_SALARY asc LIMIT 1;
+SELECT department, count(EM_ID) FROM employee Group by department order by count(em_id) limit 1;
+SELECT department, count(EM_ID) FROM employee Group by department order by sum(salary) limit 1;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
