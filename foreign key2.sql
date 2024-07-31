@@ -379,6 +379,183 @@ from employee group by department  ORDER BY AVERAGE_SALARY asc LIMIT 1;
 SELECT department, count(EM_ID) FROM employee Group by department order by count(em_id) limit 1;
 SELECT department, count(EM_ID) FROM employee Group by department order by sum(salary) limit 1;
 
+-- 29 07 2024
+ use amit_school;
+ -- built in functions
+ -- CONCAT("Hello","world") Helloworld
+ select CONCAT("Amit"," ","shukla");
+ select * from employee;
+ -- E1-nikita 
+ select em_id,em_name,concat(em_id,"-",em_name) from employee; 
+ -- email e1.ename@itvedant.com
+ select em_id,em_name,concat(em_id,".",em_name,"@itvedant.com") as email from employee;
+ 
+ -- upper ("sql") SQL
+ select UPPER("sql");
+ select LOWER("ABC");
+ INSERT INTO employee values
+ (4,"nilesh",lower("mumbai"),35400,1,26,UPPER("m"));
+   SELECT length("hello");
+  SELECT length("he   llo");
+  
+  --      5>20
+  SELECT LENGTH("NISHA")>20;
+  SELECT em_name,length(em_name) from employee;
+  select * from employee;
+
+-- H e l l o
+-- 1 2 3 4 5
+select substr("Hello",2,1);
+select substr("hello",2,2);
+select substr("hello",5,1);
+select substr("Anju",LENGTH("Anju"),1);
+select  em_name,substr(em_name,length(em_name),1) from employee;
+select  em_name,upper(substr(em_name,length(em_name),1)) from employee;
+
+select CONCAT(em_name,"-",UPPER(substr(em_name,LENGTH(em_name),1))) from employee;
+
+select  concat(UPPER(substr(em_name,1,1)),LOWER(substr(em_name,2,LENGTH(em_name)-1))) from employee;
+
+
+-- 30 07 2024
+-- mod(m,n)
+select mod(71,3);
+select round(5.785,1);
+select ceil(77.00);
+select floor(45.78);
+select sqrt(17);
+select round(sqrt(17),4);
+select sign(-80);
+SELECT SIGN(5);
+SELECT truncate(5.678354556,4);
+SELECT ROUND(5.67835624,4);
+Select pow(5,2);
+--   ------------------------------
+select ceil (avg(salary)) As average_salary from employee;
+-- DATE RELATED FUNCTION
+-- YYYY-MM-DD
+SELECT curdate();
+-- HH:MM:SS
+SELECT curtime();
+-- YYYY-MM-DD  HH:MM:SS
+SELECT now();
+SELECT date("2024-11-05 07:25:20");
+SELECT date(now());
+select Day("2024-10-20");
+select month(curdate());
+select month("2024-10-20");
+select year("2023-10-20");
+ alter table employee add column joining_date Date;
+ select * from employee;
+ update employee set joining_date="2022-5-11" where em_id in (2);
+ update employee set joining_date="2021-10-14" where em_id in (4,5,6);
+ select em_id,em_name,joining_date,year(joining_date) from employee;
+ select * from employee where year(joining_date)=2022;
+ select * from employee where year(joining_date)=2021 or year(joining_date)=2023;
+ -- select em_name,count(joining_date) from employee where year(2021) or year(joining_date)=2023;
+ 
+ select year(joining_date),count(em_id) from employee group by year(joining_date);
+  select year(joining_date)as joining_year,count(em_id) from employee group by year(joining_date) having joining_year=2022;
+  -- ---------------
+  select date_format("2024-11-21","%d-%m-%y");
+  select date_format("2024-11-21","%D %M %Y");
+  -- %W IS  A WEEK NUMBER 0-SUN 1-MON
+  select date_format("2024-07-28","%D %M %Y %w");
+  -- CAPITAL W WILL GIVE YOU DAY NAME
+   select date_format("2024-07-28","%D %M %Y %W");
+   
+  SELECT date_format(now(), "%D %M %Y %H::%i::%s");
+  select  date_format(now(), "%b");
+   select  date_format(now(), "%c");
+  desc employee;
+  
+  
+  -- 31 07 2024
+  
+  select * from employee;
+  -- 30000 very less   60000 Average     High 90000
+  select em_name,salary,
+  case 
+     when salary<30000 then "very less"
+     When salary<60000 then  "Average"
+	 When salary<100000 then "very high"
+     ELSE "-"
+  End as salarydata,em_name
+  from employee;
+  
+  select em_id,em_name,department,
+  case 
+  When department=1 then "marketing"
+  when department=2 then "IT"
+  when department=3 then "HR"
+  else "-"
+  End as department_name,salary,
+  case 
+  when salary<30000 then "very less"
+  When salary<60000 then  "Average"
+  When salary<100000 then "very high"
+  ELSE "-"
+  End as salarydata
+  from employee;
+  
+  -- update employee set salary=case ;
+  update employee set salary=
+  case
+     when department=1 then salary+2000
+     when department=2 then salary+1000
+     when department=3 then salary+500
+	 else salary
+  end;
+  select * from employee;
+  alter table employee add column Email varchar(90);
+  select * from employee;
+   -- b.ename_e_id@itvedant.com
+   
+update employee set email=concat(substr(city,1,1),".",em_name,"_",LOWER(em_id),"@itvedant.com");
+
+-- COALESCE
+alter table employee add column PHONENO bigint ;
+update employee set phoneno =7738169412, email=null where em_id in(1,2,3);
+select em_name,email,phoneno,coalesce(email,phoneno) from employee;
+
+
+   
+  
+  
+  
+  
+  
+  
+  
+  
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
