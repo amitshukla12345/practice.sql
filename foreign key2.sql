@@ -518,6 +518,49 @@ alter table employee add column PHONENO bigint ;
 update employee set phoneno =7738169412, email=null where em_id in(1,2,3);
 select em_name,email,phoneno,coalesce(email,phoneno) from employee;
 
+-- 01 08 2024
+use amit_school;
+select isnull("amit");
+select datediff(curdate(),"2024-07-25");
+select * from employee;
+select em_name,joining_date,datediff(curdate(),joining_date)  from employee;
+select em_name,joining_date,datediff(curdate(),joining_date) as no_of_days  from employee
+where datediff(curdate(),joining_date)>365;
+
+-- date_add
+select date_add(curdate(),interval 100 DAY);
+select date_add(curdate(),interval 10 MONTH);
+SELECT date_add(curdate(),interval 10 year);
+-- (- for past days ya year)
+select date_add(curdate(),interval -100 DAY);
+
+select * from employee;
+select em_name,joining_date,date_add(joining_date,interval 1 YEAR) AS anniversary from employee;
+
+select * from department;
+update employee set department=null where em_id=4;
+insert into department values(4,"operation");
+
+-- inner join
+
+select * from employee
+INNER join department
+on
+employee.department=department.department_id;
+
+select e.em_name,d.department_id,d.department_name from employee e
+inner join department d
+on
+e.department=d.department_id;
+
+
+
+
+
+
+
+
+
 
    
   
