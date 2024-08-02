@@ -552,6 +552,64 @@ select e.em_name,d.department_id,d.department_name from employee e
 inner join department d
 on
 e.department=d.department_id;
+use amit_school;
+----------------------------------- ----------------
+-- 02 08 2024
+
+-- left join
+select * from employee e
+left join department
+on 
+e.department=department.department_id
+where e.salary<50000
+order by e.salary DESC LIMIT 1;
+-- RIGHT JOIN
+ select * FROM employee e
+ right join department d
+ on 
+ e.department=d.department_id
+ where e.em_id is null; 
+ 
+ -- cross join
+ select * from employee e,department d where e.department=d.department_id and department_id=1; 
+ select * from department_duplicate; 
+ 
+ create table department_duplicate(
+ department_id char(10),
+ department_name varchar(50),
+ city varchar(60)
+ );
+ insert into department_duplicate values
+ ("D1","marketing","mumbai"),
+ ("D6","Training","pune");
+ select * from department_duplicate;
+ select * from department;
+ 
+ select department_id,department_name from department
+ union all
+ select department_id,department_name from department_duplicate;
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
