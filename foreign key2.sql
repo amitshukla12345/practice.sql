@@ -570,7 +570,7 @@ order by e.salary DESC LIMIT 1;
  e.department=d.department_id
  where e.em_id is null; 
  
- -- cross join
+ -- cross join multiple of data
  select * from employee e,department d where e.department=d.department_id and department_id=1; 
  select * from department_duplicate; 
  
@@ -588,6 +588,54 @@ order by e.salary DESC LIMIT 1;
  select department_id,department_name from department
  union all
  select department_id,department_name from department_duplicate;
+ 
+ -- 07 08 2024
+ select * from employee e
+ left join department d 
+ on e.department=d.department_id
+ union
+ select * from employee e 
+ right join department d
+ on e.department=d.department_id; 
+ 
+ -- Equi join  It uses the equality ( = ) symbol to compare the data between two columns
+ select * from employee e,department d
+ where e.department=d.department_id;
+ 
+ -- non-Equi Join
+ select * from employee e,department d
+ where e.department=d.department_id and e.salary<50000;
+ 
+ -- subqueries In SQL a Subquery can be simply defined as a query within another query
+ select min(salary) from employee;
+ select * from employee where salary=(select min(salary)from employee);
+ select max(salary) from employee;
+ select * from employee where salary=(select max(salary)from employee);
+ select avg(salary) from employee;
+ select * from employee where salary<(select avg(salary)from employee);
+ select * from employee where  salary<(select max(salary) from employee) order by salary desc limit 1;
+ 
+ select * from department where department_name="marketing";
+ alter table department add column department_city varchar(100);
+ select * from department;
+ update department set department_city="mumbai" where department_id=1;
+  update department set department_city="pune" where department_id=2;
+   update department set department_city="delhi" where department_id=3;
+    update department set department_city="Banglore" where department_id=4;
+    
+    select * from department where department_city="mumbai";
+    
+    -- in is used for multiple values
+     select * from employee where department in 
+    (select department_id from department where department_city="mumbai");
+  
+
+ 
+ 
+ 
+ 
+ 
+ 
  
  
  
