@@ -628,6 +628,59 @@ order by e.salary DESC LIMIT 1;
     -- in is used for multiple values
      select * from employee where department in 
     (select department_id from department where department_city="mumbai");
+    select * from employee;
+    
+    
+    
+ -- 06 08 2024
+ select salary from employee where em_name="nikita" or em_name="nilesh";
+ select * from employee where salary>all
+ (select salary from employee where em_name="Ankita" or em_name="nilesh");
+ 
+ select * from employee where salary<all
+ (select salary from employee where em_name="Ankita" or em_name="nilesh");
+ -- < than any greater values will take
+ select * from employee where salary<any
+ (select salary from employee where em_name="nikita" or em_name="nilesh");
+ select * from employee where salary>any
+ (select salary from employee where em_name="nikita" or em_name="nilesh");
+ select * from employee where salary>=any
+ (select salary from employee where em_name="nikita" or em_name="nilesh");
+ 
+ select * from employee where salary<
+ (select salary from employee where salary<
+ (select max(salary) from employee) order by salary desc LIMIT 1) ORDER BY SALARY desc limit 1;
+ select * from employee where salary<
+ 
+ (select salary from employee where age<
+ (select max(age) from employee) order by age desc LIMIT 1)  ORDER BY age desc limit 1;
+  
+  select * from department where department_id=
+  (select department from employee where age=
+  (select age from employee where age<
+  (select max(age) from employee) order by age desc limit 1));
+  
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+    
+    
+    
+    
+
   
 
  
