@@ -660,6 +660,101 @@ order by e.salary DESC LIMIT 1;
   (select age from employee where age<
   (select max(age) from employee) order by age desc limit 1));
   
+  -- 07 08 2024;
+  -- VIEW
+  use amit_school;
+  select * from employee;
+  create VIEW DEPARTMENT_SALARY AS
+  select department,sum(salary) from employee group by  department;
+  select * from department_salary;
+  
+  -- 09 08 2024
+  -- stored procedure
+  -- in out 
+  -- whay DELIMITER IS USE
+  -- TO CHANGE END
+  Delimiter $$
+  select * from employee$$
+  select * from department$$
+  /*
+  DELIMITER $$
+CREATE PROCEDURE procedure_name()
+  
+  BEGIN
+  
+
+  
+  END$$
+  DELIMITER;
+  */
+
+DELIMITER $$
+CREATE procedure getEmployee()
+BEGIN
+
+select * from employee;
+
+END$$
+DELIMITER ;
+
+Call getEmployee();
+
+DELIMITER $$
+CREATE procedure getdepartment()
+BEGIN
+
+SELECT * FROM department;
+
+END$$
+DELIMITER ;
+call getdepartment;      
+
+
+
+DELIMITER $$
+CREATE procedure get_by_city(IN city VARCHAR(100))
+begin
+
+SELECT COUNT(*) FROM EMPLOYEE WHERE EMPLOYEE.CITY=CITY;
+
+
+END$$
+DELIMITER ;
+CALL GET_BY_CITY("PUNE");
+-- drop procedure procedure_name;
+
+DELIMITER $$
+create procedure get_by_department (in dep_count int(10) )
+begin 
+
+
+ select count(*) from employee  where department=dep_count;
+ 
+ end$$
+ delimiter ;
+ 
+ call get_by_department(1) 
+ 
+ DELIMITER $$
+ CREATE PROCEDURE UPDATE_PHONENO(IN EM_ID INt(20), IN  phoneno bigint)
+ 
+bEGIN
+UPDATE employee set employee.phoneno=phoneno where employee.em_id=em_id;
+
+END$$
+delimiter ;
+CALL UPDATE_PHONENO(1,90225525);
+DROP procedure UPDATE_PHONENO;
+SELECT * from EMPLOYEE;
+
+ 
+
+
+  
+  
+
+    
+  
  
  
 
