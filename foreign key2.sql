@@ -747,6 +747,66 @@ CALL UPDATE_PHONENO(1,90225525);
 DROP procedure UPDATE_PHONENO;
 SELECT * from EMPLOYEE;
 
+
+  use amit_school;
+-- 12 08 2023
+-- getyear
+
+
+select @age;
+set @salary=50000;
+select @salary;
+ select * from employee where salary<@salary;
+ 
+ Delimiter $$
+ create procedure getYear(in em_id int(10),out reg_year int)
+ begin
+ select year(joining_date) Into reg_year from employee where employee.em_id=em_id;
+ end$$
+ DELIMITER ;
+ CALL GETYEAR(4,@reg_year);
+ select @reg_year;
+ select * from employee where year(joining_date)=@reg_year;
+ 
+ Delimiter $$
+ Create procedure UPDATE_city (IN EM_ID varchar(20), IN  city varchar(20))
+ bEGIN
+ UPDATE employee set employee.city=city where employee.em_id=em_id;
+ END$$
+delimiter ;
+CALL UPDATE_city('6',"delhi");
+SELECT * from EMPLOYEE;
+dROP procedure UPDATE_city;
+
+ DELIMITER $$
+ CREATE PROCEDURE UPDATE_PHONENO(IN EM_ID INt(20), IN  phoneno bigint)
+ 
+bEGIN
+UPDATE employee set employee.phoneno=phoneno where employee.em_id=em_id;
+
+END$$
+delimiter ;
+CALL UPDATE_PHONENO(4,8368204051);
+
+-- h.w
+-- getCount("mumbai",@counttemp)
+-- getemdatail("d2")
+-- getemployee("a")
+-- getemployeecount("a",@countemp)
+
+
+
+
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+
+
  
 
 
