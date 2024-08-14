@@ -794,6 +794,70 @@ CALL UPDATE_PHONENO(4,8368204051);
 -- getemployee("a")
 -- getemployeecount("a",@countemp)
 
+-- 14 08 2024 
+Delimiter $$
+Create procedure updateSalary(IN e_id char(4),INOUT salary INT) 
+begin
+DECLARE OLD_SALARY INT;
+SELECT EMPLOYEE.SALARY INTO OLD_SALARY FROM EMPLOYEE WHERE EMPLOYEE.EM_ID=EM_ID;
+UPDATE EMPLOYEE SET EMPLOYEE.SALARY=SALARY WHERE EMPLOYEE.EM_ID=EM_ID;
+SET SALARY=OLD_SALARY;
+END$$
+delimiter ;
+set @salary=85000;
+call updatesalary(3,@salary);
+ SELECT @SALARY;
+dROP procedure updateSALARY;
+
+
+/*
+Delimiter $$
+Create function fun_name (p1,p2....pn)
+retyrb datatype
+BEGIN
+// LOGIC
+
+retun value;
+end$$
+DELIMITER ;
+*/
+
+delimiter $$
+create function addition(a INT, b int)
+REturns int
+BEGIN
+RETURN a+b;
+end$$
+DELIMITER ;
+SELECT ADDITION(510,200);
+
+delimiter $$ 
+create function subtraction(a int, b int)
+returns int 
+begin
+return a-b;
+end$$
+select subtraction(10,2);
+delimiter ;
+
+
+DELIMITER $$
+ create function formatname(word VARCHAR(100))
+ Returns varchar(100)
+ BEGIN
+   return concat(upper(substr(word,1,1)),lower(substr(word,2)));
+   end$$
+   dELIMITER ;
+   SELECT FormatName("nisha");
+   select * from employee;
+   select formatname(em_name),formatname(city),addition(salary,10000) from employee;
+   
+   
+   
+ 
+
+
+
 
 
 
