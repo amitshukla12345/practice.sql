@@ -851,7 +851,121 @@ DELIMITER $$
    SELECT FormatName("nisha");
    select * from employee;
    select formatname(em_name),formatname(city),addition(salary,10000) from employee;
-   
+
+
+DELIMITER $$
+   CREATE FUNCTION grade (Marks int)
+   RETURNS CHAR(20)
+   BEGIN
+        DECLARE grade CHAR (20);
+        SET grade=CASE
+                    WHEN marks BETWEEN 0 AND 40 THEN "C"
+                    WHEN marks BETWEEN 41 AND 74 THEN "B"
+					WHEN marks BETWEEN 75 AND 100 THEN "A"
+                    ELSE
+                    "Invalid Marks"
+                    END;
+                    RETURN GRADE;
+                    END$$ 
+                    DELIMITER ;
+                    SELECT GRADE (90);
+                    dROP procedure grade;
+                    
+                    -- 16 08 2024
+/*
+Syntax:
+If condition THEN
+Statements
+END IF;
+IF condition THEN statement1
+ELSE
+statement2
+END IF
+*/
+
+DELIMITER $$
+Create function checkNumber(n INT)
+RETURNS VARCHAR(4)
+BEGIN
+IF (n%2=0) THEN
+RETURN "EVEN";
+else
+RETURN "ODD";
+END IF;
+END$$
+DELIMITER ;
+SELECT CHECKNUMBER(60);
+
+
+DELIMITER $$
+Create function AGECHECK(age INT)
+RETURNS bool
+BEGIN
+IF (AGE>18) THEN
+RETURN True;
+else
+RETURN false;
+END IF;
+END$$
+DELIMITER ;
+
+SELECT agecheck(17);
+drop function agecheck;
+
+
+                      -- ELSE IF --
+     /* 
+     IF condition THEN
+     statement1
+     ELSE IF condition THEN
+      statement2
+      ELSE IF condition THEN
+      statement3
+     
+     */
+     
+     
+        DELIMITER $$
+        CREATE FUNCTION selectLanguage(choice INT)
+        RETURNS VARCHAR(20)
+        BEGIN
+        IF (Choice=1) THEN
+        RETURN "ENGLISH";
+        ELSEIF (Choice=2) THEN
+         RETURN "Marathi";
+         ELSEIF (Choice=3) THEN
+         RETURN "HINDI";
+         else
+         RETURN "INVALID INPUT";
+         END IF;
+        END $$
+        DELIMITER ;
+        
+        SELECT selectLanguage(1);
+     
+DELIMITER $$
+        CREATE FUNCTION selectarmforce(choice INT)
+        RETURNS VARCHAR(20)
+        BEGIN
+        IF (Choice=1) THEN
+        RETURN "Army";
+        ELSEIF (Choice=2) THEN
+         RETURN "Navy";
+         ELSEIF (Choice=3) THEN
+         RETURN "Airforce";
+         else
+         RETURN "INVALID INPUT";
+         END IF;
+        END $$
+        DELIMITER ;
+        
+        SELECT selectarmforce(1);
+     
+
+
+
+                    
+                    
    
    
  
