@@ -960,6 +960,65 @@ DELIMITER $$
         DELIMITER ;
         
         SELECT selectarmforce(1);
+        
+        
+        -- 19 08 2024    LOOP
+        /*
+        Syntax:
+	label Name:LOOP
+    IF condition THEN
+    LEAVE LOOP label Name;
+    END IF;
+    END LOOP label Name;
+    */
+    DELIMITER $$
+    CREATE PROCEDURE loopExample()
+    BEGIN
+    DECLARE I INT;
+    SET i=1;
+    simpleLoop:Loop
+    If i=6 THEN
+    LEAVE SIMPLELOOP;
+    END IF;
+    SELECT "HELLO";
+    SET i=i+1;
+    END LOOP simpleLoop;
+    END$$
+    dELIMITER ;
+            CALL loopExample();
+            
+	DELIMITER $$
+    CREATE PROCEDURE print1to5 ()
+    BEGIN
+    DECLARE I INT;
+    SET i=1;
+    simpleLoop:Loop
+    If i=6 THEN
+    LEAVE SIMPLELOOP;
+    END IF;
+    SELECT i;
+    SET i=i+1;
+    END LOOP simpleLoop;
+    END$$
+    dELIMITER ;
+    call print1to5();
+    
+    
+    /*
+    labelName:WHILE
+    CONDITION DO
+    //statement
+    END WHILE label name;
+    */
+    
+    
+    
+    
+            
+            
+    
+
+        
      
 
 
