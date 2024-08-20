@@ -1003,13 +1003,74 @@ DELIMITER $$
     dELIMITER ;
     call print1to5();
     
-    
+    -- 20 08 2024
     /*
     labelName:WHILE
     CONDITION DO
     //statement
     END WHILE label name;
     */
+    use amit_school;
+    select * from employee;
+    
+    DELIMITER $$
+    CREATE PROCEDURE print11to20()
+    BEGIN
+    
+    DECLARE I INT;
+    SET i=11;
+    WhileloopExample:while
+    i<=20 do
+    select i;
+    SET I=i+1;
+    END WHILE whileLoopExample;
+    END$$
+    DELIMITER ;
+    
+    CALL print11to20();
+    
+    
+    
+    DELIMITER $$
+    CREATE PROCEDURE print_even_number_0to50()
+    BEGIN
+    
+    DECLARE I INT;
+    SET i=0;
+    WhileloopExample:while
+    i<=50 do
+    select i;
+    SET I=i+2;
+    END WHILE whileLoopExample;
+    END$$
+    DELIMITER ;
+    
+    CALL print_even_number_0to50();
+    drop procedure  print_even_number_0to50;
+    
+CREATE TABLE student(s_id INT NOT NULL);
+desc student;
+insert into student Values(null);
+DELIMITER $$
+CREATE PROCEDURE exceptionHandling(IN s_id INT)
+Begin
+DECLARE CONTINUE HANDLER FOR 1048
+BEGIN
+SELECT "YOU CANNOT INSERT NULL VALUE";
+END;
+
+Insert into student Values(s_id);
+select "Code after insertion";
+END$$
+DELIMITER ;
+CALL exceptionHandling(null);
+DROP procedure exceptionHandling;
+
+
+
+    
+    
+    
     
     
     
