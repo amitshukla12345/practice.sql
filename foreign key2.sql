@@ -1068,6 +1068,132 @@ DROP procedure exceptionHandling;
 
 
 
+DELIMITER $$
+    CREATE PROCEDURE print_even_number_0to50()
+    BEGIN
+    
+    DECLARE I INT;
+    SET i=0;
+    WhileloopExample:while
+    i<=50 do
+    select i;
+    SET I=i+2;
+    END WHILE whileLoopExample;
+    END$$
+    DELIMITER ;
+    
+    CALL print_even_number_0to50();
+    drop procedure  print_even_number_0to50;
+    
+CREATE TABLE student(s_id INT NOT NULL);
+desc student;
+insert into student Values(null);
+DELIMITER $$
+CREATE PROCEDURE exceptionHandling(IN s_id INT)
+Begin
+DECLARE CONTINUE HANDLER FOR 1048
+BEGIN
+SELECT "YOU CANNOT INSERT NULL VALUE";
+END;
+
+Insert into student Values(s_id);
+select "Code after insertion";
+END$$
+DELIMITER ;
+CALL exceptionHandling(null);
+DROP procedure exceptionHandling;
+
+
+DELIMITER $$
+    CREATE PROCEDURE print_even_number_0to50()
+    BEGIN
+    
+    DECLARE I INT;
+    SET i=0;
+    WhileloopExample:while
+    i<=50 do
+    select i;
+    SET I=i+2;
+    END WHILE whileLoopExample;
+    END$$
+    DELIMITER ;
+    
+    CALL print_even_number_0to50();
+    drop procedure  print_even_number_0to50;
+    
+CREATE TABLE students(s_id INT NOT NULL);
+alter table student modify column s_id int pri
+desc student;
+insert into student Values(null);
+DELIMITER $$
+CREATE PROCEDURE exceptionHandling(IN s_id INT)
+Begin
+DECLARE CONTINUE HANDLER FOR 1048
+BEGIN
+SELECT "YOU CANNOT INSERT NULL VALUE";
+END;
+
+Insert into student Values(s_id);
+select "Code after insertion";
+END$$
+DELIMITER ;
+CALL exceptionHandling(null);
+
+
+-- 21 08 2024  cursor 
+select * from employee;
+/*
+Declare Cursor
+OPEN CURSOR
+Fetch CURSOR
+CLOSE CURSOR
+*/
+
+/*
+1) Declare Cursor
+      Declare Cursor_name CURSOR FOR select query
+      Declare S CURSOR FOR SELECT id FROM student;
+2) OPEN CURSOR
+      Open cursor_name;
+      open s;
+ 3)Fetch CURSOR
+     FETCH cursor_name INTO variable_list;
+	FETCH S INTO Student_id;
+ 4) CLOSE CURSOR
+     CLOE cursor_name;
+     CLOSE S;
+     */
+ SELECT * FROM employee;
+DELIMITER $$
+Create procedure cursorexamle()
+Begin
+  DECLARE EM_id int;
+  DECLARE em_name varchar(100);
+  declare n int;
+  DECLARE em_cursor cursor for
+  select employee.em_id,employee.em_name from employee;
+  DECLARE CONTINUE HANDLER FOR 1329
+  BEGIN
+  SET n=1;
+   open em_cursor;
+   cursorloop:loop
+   IF N=1 THEN
+   LEAVE cursorLoop;
+   End IF;
+   FETCH  em_cursor into EM_id,em_name;
+    select EM_id,em_name;
+    END LOOP cursorLoop;
+    SELECT "HELLO";
+        close em_cursor;
+  
+END$$
+DELIMITER ;
+drop procedure cursorexamle;
+
+call cursorexamle();
+
+      
+
 
 
 
